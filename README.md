@@ -2,7 +2,24 @@
 
 A Sphinx directive for rendering YAML data as Markdown.
 
-## Overview
+## Installation
+
+```
+$ pip install git+https://github.com/elastic/markitpy.extensions.yaml-to-md
+```
+
+## Configuration
+
+Add yaml-to-md to the extensions list in conf.py
+
+```
+extensions = [
+    ...
+    markitpy.extensions.yaml_to_md
+]
+```
+
+## Usage
 
 The syntax of this directive is:
 
@@ -21,6 +38,8 @@ The filepaths are relative to 'docs/source'. For example:
     :template: _static/templates/some-template.jinja
     ```
 ```
+
+## Template Syntax
 
 This directive uses Jinja as its templating engine.
 
