@@ -1,0 +1,26 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "yaml-to-md"
+description = "A Sphinx directive for rendering YAML data as Markdown."
+readme = "README.md"
+dynamic = ["version"]
+license.file = "LICENSE"
+requires-python = ">=3.10"
+
+classifiers = [
+  "Programming Language :: Python :: 3 :: Only"
+]
+
+dependencies = [
+  "jinja2",
+  "pyyaml"
+]
+
+[tool.hatch.version]
+path = "markitpy/extensions/yaml_to_md/__version__.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["markitpy"]
