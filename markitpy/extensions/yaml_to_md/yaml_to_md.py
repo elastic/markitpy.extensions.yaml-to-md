@@ -49,13 +49,9 @@ class YamlToMdDirective(SphinxDirective):
 
     def create_document(self) -> nodes.document:
         """Create a new document for passing to the myst parser."""
-        with warnings.catch_warnings():
-            warnings.filterwarnings('ignore', category=DeprecationWarning)
-            # DeprecationWarning: The frontend.OptionParser class will be replaced
-            # by a subclass of argparse.ArgumentParser in Docutils 0.21 or later.
-            settings = frontend.OptionParser(components=(rst.Parser,)).get_default_values()
-        settings.id_prefix = 'id'
-        document = new_document('dummy.txt', settings)
+        settings = frontend.get_default_settings(Parser)
+        settings.env = self.env
+        document = new_document('', settings)
         return document
 
     def parse_md(self, mdOutput: str) -> list[nodes.Node]:
