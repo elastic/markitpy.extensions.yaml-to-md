@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.2 - 2024-09-16
+### Added
+- Uses Sphinx logging to show the version of this extension
+
 ## 0.1.1 - 2024-09-15
 ### Fixed
 - Initializes the `env` of document settings. Sphinx-design extensions were not working in yaml-to-md templates because `settings.env` was not set.

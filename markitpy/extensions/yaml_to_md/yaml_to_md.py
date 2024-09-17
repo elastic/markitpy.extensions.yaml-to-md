@@ -1,16 +1,15 @@
-from __future__ import annotations
-from docutils import nodes, frontend
-from docutils.parsers import rst
-from docutils.utils import new_document
-from myst_parser.parsers.docutils_ import Parser
-
 import yaml
 import jinja2
-import warnings
+from markitpy.extensions.yaml_to_md import __version__
 from pathlib import Path
+from docutils import nodes, frontend
+from docutils.utils import new_document
 from sphinx.application import Sphinx
+from sphinx.util import logging as sphinx_logging
+from sphinx.util.console import bold
 from sphinx.util.docutils import SphinxDirective, directives
 from sphinx.util.typing import ExtensionMetadata
+from myst_parser.parsers.docutils_ import Parser
 
 class YamlToMdDirective(SphinxDirective):
     """A directive to turn YAML to markdown!"""
@@ -84,11 +83,17 @@ class YamlToMdDirective(SphinxDirective):
         nodes = self.parse_md(mdOutput)
         return nodes
 
+def print_version() -> None:
+    """Print the version of the extension."""
+    SPHINX_LOGGER = sphinx_logging.getLogger(__name__)
+    SPHINX_LOGGER.info(bold("yaml-to-md v%s"), __version__)
+
 def setup(app: Sphinx) -> ExtensionMetadata:
     """Setup the extension."""
+    print_version()
     app.add_directive('yaml-to-md', YamlToMdDirective)
     return {
-        'version': '0.1',
+        'version': __version__,
         'parallel_read_safe': True,
         'parallel_write_safe': True,
     }
